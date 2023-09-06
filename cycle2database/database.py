@@ -10,6 +10,7 @@ client= MongoClient("mongodb+srv://lrosesmith23:Ziggyepq22@mystation.uoil79h.mon
 db = client.weatherStationData #Selects database
 
 collection = db.weather #Select collection in database
+     
 
 # Recieve and decode message
 
@@ -24,13 +25,15 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, message):
     weatherData = str((message.payload).decode())
-    print ("Message received: "  + weatherData)
 
     #convert string to dictionary
     convertedWeatherData = ast.literal_eval(weatherData)
 
+    
+    print ("Message received: "  + str(convertedWeatherData))
     # Upload data to database
     collection.insert_one(convertedWeatherData)
+    
 
 def on_subscribe(client, userdata, mid, granted_qos):
      print("Subscribed")
