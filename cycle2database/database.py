@@ -38,7 +38,7 @@ def on_message(client, userdata, message):
 def on_subscribe(client, userdata, mid, granted_qos):
      print("Subscribed")
 
-def on_connect_fail(stuff):
+def on_connect_fail():
      print("Failed")
 
 
